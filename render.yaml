@@ -29,17 +29,13 @@ services:
           name: n8nDB
           property: password
       - key: N8N_HOST
-        value: n8n.testdomain.com
-      - key: N8N_PROTOCOL
-        value: https
-      - key: N8N_BASE_URL
-        value: /api/v1
+        value: ${RENDER_EXTERNAL_URL}
       - key: WEBHOOK_URL
-        value: https://n8n.testdomain.com
+        value: ${RENDER_EXTERNAL_URL}
       - key: TUNNEL_WEBHOOK_URL
-        value: https://n8n.testdomain.com
+        value: ${RENDER_EXTERNAL_URL}
       - key: VUE_APP_URL_BASE_API
-        value: https://n8n.testdomain.com/api/v1
+        value: ${RENDER_EXTERNAL_URL}/api/v1
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
       - key: GENERIC_TIMEZONE

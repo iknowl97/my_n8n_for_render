@@ -2,6 +2,13 @@
 
 ## Deployment Guide
 
+### Render-Specific Features
+
+- Automatic SSL configuration
+- Built-in PostgreSQL database
+- Environment variables managed through Render dashboard
+- Zero-downtime deployments
+
 This repository contains a configured setup for deploying n8n workflow automation tool on Render.com using Docker with persistent storage.
 
 ### Features
