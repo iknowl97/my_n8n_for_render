@@ -1,0 +1,84 @@
+services:
+  - type: web
+    name: n8n
+    env: docker
+    region: oregon # optional (defaults to oregon)
+    plan: standard # optional (defaults to starter)
+    branch: main # optional (defaults to master)
+    numInstances: 1
+    healthCheckPath: /
+    envVars:
+      - key: POSTGRES_HOST
+        fromDatabase:
+          name: n8nDB
+          property: host
+      - key: POSTGRES_DB
+        fromDatabase:
+          name: n8nDB
+          property: database
+      - key: POSTGRES_PORT
+        fromDatabase:
+          name: n8nDB
+          property: port
+      - key: POSTGRES_USER
+        fromDatabase:
+          name: n8nDB
+          property: user
+      - key: POSTGRES_PASSWORD
+        fromDatabase:
+          name: n8nDB
+          property: password
+      - key: N8N_HOST
+        value: n8n.testdomain.com
+      - key: N8N_PROTOCOL
+        value: https
+      - key: N8N_BASE_URL
+        value: /api/v1
+      - key: WEBHOOK_URL
+        value: https://n8n.testdomain.com
+      - key: TUNNEL_WEBHOOK_URL
+        value: https://n8n.testdomain.com
+      - key: VUE_APP_URL_BASE_API
+        value: https://n8n.testdomain.com/api/v1
+      - key: N8N_ENCRYPTION_KEY
+        generateValue: true
+      - key: GENERIC_TIMEZONE
+        value: Asia/Tbilisi
+      - key: TZ
+        value: Asia/Tbilisi
+      - key: DB_TYPE
+        value: postgresdb
+      - key: DB_POSTGRESDB_DATABASE
+        value: ${POSTGRES_DB}
+      - key: DB_POSTGRESDB_HOST
+        value: ${POSTGRES_HOST}
+      - key: DB_POSTGRESDB_PORT
+        value: ${POSTGRES_PORT}
+      - key: DB_POSTGRESDB_USER
+        value: ${POSTGRES_USER}
+      - key: DB_POSTGRESDB_PASSWORD
+        value: ${POSTGRES_PASSWORD}
+      - key: DB_POSTGRESDB_SCHEMA
+        value: public
+      - key: N8N_LOG_LEVEL
+        value: verbose
+      - key: EXECUTIONS_DATA_PRUNE
+        value: "true"
+      - key: EXECUTIONS_DATA_MAX_AGE
+        value: "72"
+      - key: EXECUTIONS_DATA_SAVE_ON_ERROR
+        value: all
+      - key: EXECUTIONS_DATA_SAVE_ON_SUCCESS
+        value: none
+      - key: EXECUTIONS_DATA_SAVE_ON_PROGRESS
+        value: "false"
+      - key: EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS
+        value: "false"
+    disk:
+      name: n8nDisk
+      mountPath: /home/node/.n8n
+      sizeGB: 10
+
+databases:
+  - name: n8nDB
+    plan: starter

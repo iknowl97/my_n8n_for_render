@@ -1,0 +1,21 @@
+# Git
+.git
+.gitignore
+
+# Node.js
+node_modules
+npm-debug.log
+
+# Backups
+backups/
+
+# Docker
+.dockerignore
+
+# Render specific
+.render/
+
+# Misc
+.DS_Store
+*.md
+!README.md
